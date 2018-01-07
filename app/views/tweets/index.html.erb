@@ -1,8 +1,7 @@
 <ul class="tweets">
   <% @tweets.each do |tweet| %>
     <li class="tweet">
-      <p><%= tweet.message %></p>
-      <time><%= tweet.created_at.strftime('%b %e, %l:%M %p') %></time>
+      <%= render partial: 'tweet' , locals: {tweet: tweet} %>
     </li>
   <% end %>
 </ul>

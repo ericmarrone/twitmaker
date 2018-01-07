@@ -8,20 +8,23 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new(tweet_params)
 
     if @tweet.save
-      format.html do
-        if request.xhr?
-          render partial: 'tweet', locals: { todo: @tweet }
-        else
-          redirect_to tweets_path
+      respond_to do |format|
+        format.html do
+          if request.xhr?
+            render partial: 'tweet', locals: { tweet: @tweet }
+          else
+            redirect_to tweets_path
+          end
         end
+        format.json { render json: @tweet }
       end
-      format.json { render json: @todo }
     else
       render :index
     end
   end
 
-  def destroy; end
+  def destroy
+  end
 
   private
 
