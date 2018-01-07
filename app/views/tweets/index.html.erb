@@ -1,12 +1,10 @@
 <ul class="tweets">
   <% @tweets.each do |tweet| %>
-    <li class="tweet">
-      <%= render partial: 'tweet' , locals: {tweet: tweet} %>
-    </li>
+    <%= render partial: 'tweet' , locals: {tweet: tweet} %>
   <% end %>
 </ul>
 
 <%= form_for @tweet do |f| %>
   <%= f.text_area :message, placeholder: "What did you learn today?" %>
-  <%= f.submit "Tweet", id: "create-tweet" %>
+  <%= f.submit "Tweet", id: "create-tweet", data: {disable_with: false} %>
 <% end %>
