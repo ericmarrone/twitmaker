@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $.ajax({
       url: form.getAttribute('action'),
       method: form.getAttribute('method'),
-      dataType: 'HTML',
+      dataType: 'JSON',
       data: $(form).serialize()
     }).done(function(data) {
       console.log(data);
@@ -18,7 +18,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
       //Prepend tweet to list
       var tweetList = document.querySelector('.tweets');
-      tweetList.insertAdjacentHTML('afterbegin', data)
+      var newTweet = `<li class="tweet">
+				<p>${data.message}</p>
+				<time>${data.created_at}</time>
+			</li>`;
+			$(tweetList).prepend(newTweet)
     });
   });
 });

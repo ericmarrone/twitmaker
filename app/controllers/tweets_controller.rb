@@ -9,13 +9,6 @@ class TweetsController < ApplicationController
 
     if @tweet.save
       respond_to do |format|
-        format.html do
-          if request.xhr?
-            render partial: 'tweet', locals: { tweet: @tweet }
-          else
-            redirect_to tweets_path
-          end
-        end
         format.json { render json: @tweet }
       end
     else
